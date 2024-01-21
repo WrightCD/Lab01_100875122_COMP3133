@@ -2,6 +2,10 @@ const fs = require("fs");
 const csv = require("csv-parser");
 
 function countryToFile(country, file) {
+  if (fs.existsSync(file)) {
+    fs.unlinkSync(file);
+  }
+
   const writeStream = fs.createWriteStream(file);
 
   writeStream.write(`country,year,population\n`);
